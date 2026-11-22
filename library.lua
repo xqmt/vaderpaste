@@ -69,14 +69,14 @@ local config_flags = library.config_flags
 
 local themes = {
 	preset = {
-		["outline"] = rgb(32, 32, 38), --
-		["inline"] = rgb(60, 55, 75), --
-		["accent"] = rgb(100, 100, 255), --
-		["contrast"] = rgb(35, 35, 47),
-		["text"] = rgb(170, 170, 170),
+		["outline"] = rgb(5, 5, 5), --
+		["inline"] = rgb(6, 6, 6), --
+		["accent"] = rgb(255, 255, 255), --
+		["contrast"] = rgb(8, 8, 8),
+		["text"] = rgb(255, 255, 255),
 		["unselected_text"] = rgb(90, 90, 90),
 		["text_outline"] = rgb(0, 0, 0),
-		["glow"] = rgb(100, 100, 255),
+		["glow"] = rgb(255, 255, 255),
 	},
 
 	utility = {
