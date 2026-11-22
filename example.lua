@@ -1,9 +1,70 @@
+local function rgb(r, g, b)
+	return Color3.fromRGB(r, g, b)
+end
+
+local themes = {
+	preset = {
+		["outline"] = rgb(0, 0, 0),
+		["inline"] = rgb(0, 0, 0),
+		["accent"] = rgb(255, 255, 255),
+		["contrast"] = rgb(0, 0, 0),
+		["text"] = rgb(255, 255, 255),
+		["unselected_text"] = rgb(255, 255, 255),
+		["text_outline"] = rgb(0, 0, 0),
+		["glow"] = rgb(255, 255, 255),
+	},
+
+	utility = {
+		["outline"] = {
+			["BackgroundColor3"] = {},
+			["Color"] = {},
+		},
+		["inline"] = {
+			["BackgroundColor3"] = {},
+		},
+		["accent"] = {
+			["BackgroundColor3"] = {},
+			["TextColor3"] = {},
+			["ImageColor3"] = {},
+			["BorderColor3"] = {},
+			["ScrollBarImageColor3"] = {},
+		},
+		["contrast"] = {
+			["Color"] = {},
+		},
+		["text"] = {
+			["TextColor3"] = {},
+		},
+		["text_outline"] = {
+			["Color"] = {},
+		},
+		["glow"] = {
+			["ImageColor3"] = {},
+		},
+	},
+}
+
 local library =
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/xqmt/vaderpaste/refs/heads/main/library.lua"))()
 local flags = library.flags -- access flags from here.
 
+if library then
+	if type(library.theme) == "table" then
+		for key, color in pairs(themes.preset) do
+			library.theme[key] = color
+		end
+	end
+	if type(library.update_theme) == "function" then
+		for key, color in pairs(themes.preset) do
+			pcall(function()
+				library:update_theme(key, color)
+			end)
+		end
+	end
+end
+
 local window = library:window({
-	name = "vaderpaste",
+	name = "",
 	size = UDim2.fromOffset(500, 650),
 })
 
@@ -867,7 +928,7 @@ do -- Configs
 		suffix = "",
 	})
 	config:colorpicker({
-		color = Color3.fromHex("#6464FF"),
+		color = Color3.fromHex("#FFFFFF"),
 		flag = "accent",
 		callback = function(color)
 			library:update_theme("accent", color)
